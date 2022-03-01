@@ -1,0 +1,30 @@
+
+:host {
+    display:block;
+    justify-content: center;
+    margin: 50px 50px;
+  }
+
+.topic-input{
+    width:80%;
+}
+
+.card-header{
+    justify-content: center;
+    background-color: aliceblue;
+}
+
+.card-action{
+    margin: 5px;
+    padding: 2px,2px,2px,2px;
+}
+
+.table-container {
+    position: relative;
+    overflow: auto;
+    display :block;
+  }
+
+  .table{
+      width:100%;
+  }

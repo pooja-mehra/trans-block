@@ -86,23 +86,23 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "/trans-block/main.f5c0bc618c2d644a.js",
-            "polyfills": "/trans-block/polyfills.d15027db472fa7f4.js",
+            "main": "/dist/main.f5c0bc618c2d644a.js",
+            "polyfills": "/dist/polyfills.d15027db472fa7f4.js",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "tras-block/favicon.ico",
+              "dist/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "/trans-block/styles.3f0597960bc2e56d.css"
+              "/dist/styles.3f0597960bc2e56d.css"
             ],
             "scripts": []
           }
         },
         "deploy": {
-          "builder": "angular-cli-heroku:deploy"
+          "builder": "angular-cli-ghpages:deploy"
         }
       }
     }

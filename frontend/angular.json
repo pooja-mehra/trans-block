@@ -86,17 +86,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "/dist/main.f5c0bc618c2d644a.js",
-            "polyfills": "/dist/polyfills.d15027db472fa7f4.js",
+            "main": "/docs/main.f5c0bc618c2d644a.js",
+            "polyfills": "/docs/polyfills.d15027db472fa7f4.js",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "dist/favicon.ico",
+              "docs/favicon.ico",
               "src/assets"
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
-              "/dist/styles.3f0597960bc2e56d.css"
+              "/docs/styles.3f0597960bc2e56d.css"
             ],
             "scripts": []
           }

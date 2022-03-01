@@ -32,6 +32,7 @@ export class DashboardComponent implements OnInit {
 
   addNewTopic(){
     let that = this
+    console.log(this.account)
     this.dashboardService.setNewTopic(this.topic.value, this.web3Provider, this.account).then(function(result:any ) {
       that.topics = result.result;
       result.result.forEach(element => {

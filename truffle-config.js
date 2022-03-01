@@ -1,6 +1,5 @@
 const HDWalletProvider = require('@truffle/hdwallet-provider')
-//const HDWalletProvider = require('truffle-hdwallet-provider-privkey');
-//require('dotenv').config()
+require('dotenv').config() // Store environment-specific variable from '.env' to process.env
 const mnemonic = process.env.MNEMONIC
 const url = process.env.RPC_URL
 const projectId = process.env.PROJECT_ID
@@ -17,7 +16,17 @@ module.exports = {
     }
   },
   networks: {
-    
+    kovan: {
+      networkCheckTimeout: 10000,
+      provider: () => {
+         return new HDWalletProvider(
+          mnemonic,
+          url
+         );
+      },
+      network_id: "42",
+   },
+
     development: {
       host: "127.0.0.1",
       port: 7545,

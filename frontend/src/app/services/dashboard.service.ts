@@ -30,6 +30,7 @@ export class DashboardService {
 }
 
   setNewTopic(newTopic:any, web3Provider:any,account:any) {
+    console.log(account)
     let that = this
     that.topics =[];
     this.categoryContract.setProvider(web3Provider);

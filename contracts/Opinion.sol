@@ -1,9 +1,9 @@
+// SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 pragma experimental ABIEncoderV2;
-import './Base.sol';
 import './Category.sol';
 
-contract Opinion is Base, Category{
+contract Opinion is Category{
 
     mapping(uint8 => address)votedTopic;
     mapping(address => uint8)votedAddress;

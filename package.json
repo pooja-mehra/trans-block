@@ -10,5 +10,8 @@
     "solc": "^0.8.0",
     "truffle": "^5.5.1",
     "truffle-hdwallet-provider-privkey": "^0.3.0"
+  },
+  "devDependencies": {
+    "truffle-plugin-verify": "^0.5.21"
   }
 }

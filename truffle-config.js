@@ -3,10 +3,15 @@ require('dotenv').config() // Store environment-specific variable from '.env' to
 const mnemonic = process.env.MNEMONIC
 const url = process.env.RPC_URL
 const projectId = process.env.PROJECT_ID
+const api_key = process.env.MY_API_KEY
 
 module.exports = {
   // See <http://truffleframework.com/docs/advanced/configuration>
   // for more about customizing your Truffle configuration!
+  plugins: ['truffle-plugin-verify'],
+  api_keys: {
+    etherscan: api_key
+  },
   compilers:{
     solc:{
       path: "soljson-v0.8.3+commit.8d00100c.js",

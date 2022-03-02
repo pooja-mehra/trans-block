@@ -32,7 +32,6 @@ export class DashboardComponent implements OnInit {
 
   addNewTopic(){
     let that = this
-    console.log(this.account)
     this.dashboardService.setNewTopic(this.topic.value, this.web3Provider, this.account).then(function(result:any ) {
       that.topics = result.result;
       result.result.forEach(element => {
@@ -46,7 +45,6 @@ export class DashboardComponent implements OnInit {
 
   setVote(topicId,voted){
     let vote:boolean = true;
-    console.log(voted)
     if(voted == 'up'){
       vote = true;
     }
@@ -55,7 +53,6 @@ export class DashboardComponent implements OnInit {
     }
     let that = this;
     this.dashboardService.setVote(topicId,vote,this.web3Provider, this.account).then(function(result:any) {
-      console.log(result)
       if(result.isVoted && result.isVoted == true){
         alert('can not vote again');
       }else{

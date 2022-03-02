@@ -3,7 +3,6 @@ import Web3 from 'web3';
 import {DashboardService} from './services/dashboard.service'
 import { Topics } from './shared/topics'
 declare let window: any;
-declare var require: any;
 const { ethereum } = window;
 
 @Component({
@@ -20,19 +19,10 @@ export class AppComponent implements OnInit{
   test:Topics[]=[];
 
   constructor(private dashboardService:DashboardService){
-    if (typeof ethereum !== 'undefined') {
-      console.log('MetaMask is installed!');
-    }
-    if (typeof ethereum.web3 !== 'undefined') {
-      this.web3Provider = ethereum.web3.currentProvider;
-     } else {
-      this.web3Provider = new Web3.providers.HttpProvider('http://localhost:7545');
-    }
+    this.web3Provider = window.web3.currentProvider;
     ethereum.web3 = new Web3(this.web3Provider);
     this.web3 = ethereum.web3;
-    
     this.getTopics();
-    this.getAccount();
   }
 
   ngOnInit(){
@@ -41,14 +31,13 @@ export class AppComponent implements OnInit{
 
   async getAccount(){
     let accounts = await ethereum.request({ method: 'eth_accounts' });
-    this.account = accounts[0];
-    console.log(accounts[0])
+    this.account =accounts[0];
   }
-  
-  
-  getTopics = () => {
+
+  async getTopics(){
+    await this.getAccount();
     let that = this
-    this.dashboardService.getTopics(this.web3Provider).then(function (result:any){
+    this.dashboardService.getTopics(this.web3Provider,this.account).then(function (result:any){
       that.topics = result.result;
       result.result.forEach(element => {
         that.dashboardService.getVote(element.topicId, that.web3Provider).then(function (vote:any){

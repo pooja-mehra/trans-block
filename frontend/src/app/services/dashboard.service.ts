@@ -16,10 +16,10 @@ export class DashboardService {
   opinionContract = contract(opinionToken);
   constructor() { }
 
-  getTopics(web3Provider:any){
+  async getTopics(web3Provider:any, account:any){
     let that = this
     that.topics =[];
-    this.categoryContract.setProvider(web3Provider);
+    await this.categoryContract.setProvider(web3Provider);
       return new Promise((resolve, reject) =>{
         this.categoryContract.deployed().then(function(instance:any) {
           instance.getTopics().then( function(returnedTopics) {
@@ -30,7 +30,6 @@ export class DashboardService {
 }
 
   setNewTopic(newTopic:any, web3Provider:any,account:any) {
-    console.log(account)
     let that = this
     that.topics =[];
     this.categoryContract.setProvider(web3Provider);
@@ -51,12 +50,10 @@ export class DashboardService {
         this.opinionContract.deployed().then(function(instance:any) {
           instance.checkVote(topicId,{from: account}).then(function(isVoted){
               if(isVoted == true){
-                console.log('yes')
                 return resolve({'isVoted':isVoted})
               } else{
                 instance.setVote (topicId, vote, {from: account}).then(function(){
                   instance.getVote(topicId).then(function(vote){
-                    console.log(vote)
                     return resolve ({'vote': vote})
                   })
                 })

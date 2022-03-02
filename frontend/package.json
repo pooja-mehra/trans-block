@@ -5,9 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --prod --output-path docs --base-href=“https://pooja-mehra.github.io/trans-block”",
+    "build": "ng build --prod --output-path docs --base-href /trans-block/",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d docs"
+    "deploy": "gh-pages -d dist"
 
   },
   "private": true,

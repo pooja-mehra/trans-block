@@ -12,8 +12,4 @@
 /package-lock.json
 /frontend/dist
 /frontend/docs
-/truffle-config.js
-/frontend/angular.json
-/frontend/.browserslistrc
 /frontend/.env
-truffle-config.js

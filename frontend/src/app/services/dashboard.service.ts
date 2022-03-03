@@ -16,7 +16,7 @@ export class DashboardService {
   opinionContract = contract(opinionToken);
   constructor() { }
 
-  async getTopics(web3Provider:any, account:any){
+  async getTopics(web3Provider:any){
     let that = this
     that.topics =[];
     await this.categoryContract.setProvider(web3Provider);

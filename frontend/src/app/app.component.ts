@@ -19,10 +19,16 @@ export class AppComponent implements OnInit{
   test:Topics[]=[];
 
   constructor(private dashboardService:DashboardService){
-    this.web3Provider = window.web3.currentProvider;
-    ethereum.web3 = new Web3(this.web3Provider);
-    this.web3 = ethereum.web3;
-    this.getTopics();
+    try {
+      window.web3.currentProvider;
+      this.web3Provider = window.web3.currentProvider;
+      ethereum.web3 = new Web3(this.web3Provider);
+      this.web3 = ethereum.web3;
+      this.getTopics();
+    } catch(e) {
+      e = 'Install Metamask'
+      alert(e);
+    }
   }
 
   ngOnInit(){
@@ -37,7 +43,7 @@ export class AppComponent implements OnInit{
   async getTopics(){
     await this.getAccount();
     let that = this
-    this.dashboardService.getTopics(this.web3Provider,this.account).then(function (result:any){
+    this.dashboardService.getTopics(this.web3Provider).then(function (result:any){
       that.topics = result.result;
       result.result.forEach(element => {
         that.dashboardService.getVote(element.topicId, that.web3Provider).then(function (vote:any){

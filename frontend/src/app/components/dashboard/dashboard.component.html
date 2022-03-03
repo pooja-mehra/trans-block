@@ -8,7 +8,7 @@
         <input matInput placeholder="Do you like Ice-cream?" [formControl]="topic" required>
         <mat-error *ngIf="topic.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-    <button type="button" mat-raised-button color="primary" *ngIf=" topic.value !='' && web3Provider !== undefined " (click) = "addNewTopic()" >Submit</button>
+    <button type="button" mat-raised-button color="primary" *ngIf=" topic.value !='' && account !== undefined " (click) = "addNewTopic()" >Submit</button>
     </mat-card-actions>
 </mat-card>
 
@@ -31,12 +31,12 @@
 
       <ng-container matColumnDef="upVote">
         <th mat-header-cell *matHeaderCellDef>Up Vote</th>
-        <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary"  (click) = "setVote(row.topicId,'up')">{{row.upVote}}</button></td>
+        <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary"  [disabled] = "account === undefined" (click) = "setVote(row.topicId,'up')">{{row.upVote}}</button></td>
       </ng-container>
 
       <ng-container matColumnDef="downVote">
         <th mat-header-cell *matHeaderCellDef>Down Vote</th>
-        <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary" (click) = "setVote(row.topicId,'down')">{{row.downVote}}</button></td>
+        <td mat-cell *matCellDef="let row"><button mat-raised-button color="primary" [disabled] = "account === undefined" (click) = "setVote(row.topicId,'down')">{{row.downVote}}</button></td>
       </ng-container>
 
     </table>

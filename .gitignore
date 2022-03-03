@@ -4,7 +4,6 @@
 /.idea
 .project
 .classpath
-/frontend/environments
 /frontend/node_modules
 /frontend/package-lock.json
 /frontend/.angular
@@ -13,3 +12,4 @@
 /frontend/dist
 /frontend/docs
 /frontend/.env
+frontend/src/environments

@@ -6,6 +6,7 @@ declare let window: any;
 const { ethereum } = window;
 import { environment} from '../environments/environment'
 const default_web3_provider = environment.DEFAULT_WEB3_PROVIDER;
+const HDWalletProvider = require('@truffle/hdwallet-provider')
 
 @Component({
   selector: 'app-root',
@@ -22,24 +23,33 @@ export class AppComponent implements OnInit{
   test:Topics[]=[];
   
   constructor(private dashboardService:DashboardService){
-   
-    try {
-      window.web3.currentProvider;
-      this.web3Provider = window.web3.currentProvider;
-      ethereum.web3 = new Web3(this.web3Provider);
-      this.web3 = ethereum.web3;
-    } catch(e) {
-      e = 'Install Metamask for write access'
-      alert(e);
-      this.web3Provider = new Web3.providers.HttpProvider(default_web3_provider);
-      window.web3 = new Web3(this.web3Provider);
-      this.web3 = window.web3;
-    }
+    this.getWeb3Provider()
     this.getTopics();
   }
 
   ngOnInit(){
     
+  }
+
+  getWeb3Provider(){
+    try {
+      window.web3.currentProvider;
+      this.web3Provider = window.web3.currentProvider;
+      ethereum.web3 = new Web3(this.web3Provider);
+      this.web3 = ethereum.web3;
+      this.getAccount();
+    } catch(e) {
+      console.log(default_web3_provider)
+      this.web3Provider = new Web3.providers.HttpProvider(default_web3_provider);  
+      window.web3 = new Web3(this.web3Provider);
+      this.web3 = window.web3;
+      e = 'Install metamsk '
+      alert(e)
+    }
+      /*this.web3Provider = await this.dashboardService.getWeb3Provider().then(function (result:any){
+        return new Web3.providers.HttpProvider(result.result.url); 
+        )
+      //)*/
   }
 
   async getAccount(){
@@ -54,7 +64,6 @@ export class AppComponent implements OnInit{
 
   async getTopics(){
     let that = this
-    await this.getAccount();
     this.dashboardService.getTopics(this.web3Provider).then(function (result:any){
       that.topics = result.result;
       result.result.forEach(element => {

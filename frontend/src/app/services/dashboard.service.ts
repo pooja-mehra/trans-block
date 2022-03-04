@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {Topics} from '../shared/topics';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError, retry } from 'rxjs/operators';
 var contract = require("truffle-contract");
 declare let require: any;
 declare let window: any;
@@ -14,7 +16,7 @@ export class DashboardService {
   topics:Topics[] =[];
   categoryContract = contract(categoryToken);
   opinionContract = contract(opinionToken);
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
   async getTopics(web3Provider:any){
     let that = this
@@ -73,4 +75,17 @@ export class DashboardService {
           }); 
         });
   }
+
+  /*getWeb3Provider(){
+    return new Promise((resolve, reject) => {
+      this.httpClient.get('http://localhost:3000/web3provider')
+        .toPromise()
+        .then(
+          res => {
+            return resolve({'result':res});
+          }
+        );
+    });
+}*/
+  
 }

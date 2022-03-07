@@ -39,7 +39,6 @@ export class AppComponent implements OnInit{
       this.web3 = ethereum.web3;
       this.getAccount();
     } catch(e) {
-      console.log(default_web3_provider)
       this.web3Provider = new Web3.providers.HttpProvider(default_web3_provider);  
       window.web3 = new Web3(this.web3Provider);
       this.web3 = window.web3;

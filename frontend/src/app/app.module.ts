@@ -14,11 +14,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import { DashboardService } from './services/dashboard.service';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PricingComponent } from './components/pricing/pricing.component';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { SettingsComponent } from './components/settings/settings.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DashboardComponent
+    DashboardComponent,
+    PricingComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +38,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule,
+    MatSlideToggleModule,
   ],
   providers: [DashboardService],
   bootstrap: [AppComponent]
